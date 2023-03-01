@@ -49,6 +49,7 @@ resource "ibm_compute_vm_instance" "rocky" {
   user_metadata     = file("${path.module}/init.yml")
 }
 
-output "ubuntu_instance" {
-  value = jsonencode(ibm_compute_vm_instance.ubuntu)
+output "instance_ips" {
+  value = concat(ibm_compute_vm_instance.ubuntu.ipv4_address,
+    ibm_compute_vm_instance.rocky.ipv4_address)
 }

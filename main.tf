@@ -48,3 +48,7 @@ resource "ibm_compute_vm_instance" "rocky" {
   tags              = local.tags
   user_metadata     = file("${path.module}/init.yml")
 }
+
+output "ubuntu_instance" {
+  value = jsonencode(ibm_compute_vm_instance.ubuntu)
+}

@@ -4,7 +4,7 @@ locals {
   tags = [
     "provider:ibm",
     "project:${local.prefix}",
-    "environment:transient",
+    "ephemeral-test",
     "owner:${var.owner}",
     "datacenter:${local.deployment_location.datacenter}"
   ]

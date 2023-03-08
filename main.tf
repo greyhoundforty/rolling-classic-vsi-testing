@@ -24,7 +24,7 @@ resource "random_integer" "location" {
 }
 
 resource "ibm_compute_vm_instance" "ubuntu" {
-  hostname          = "${local.prefix}-${local.deployment_location.datacenter}-ubuntu"
+  hostname          = "${local.prefix}-ubuntu"
   os_reference_code = var.ubuntu_os_reference_code
   domain            = var.domain
   datacenter        = local.deployment_location.datacenter
@@ -37,7 +37,7 @@ resource "ibm_compute_vm_instance" "ubuntu" {
 }
 
 resource "ibm_compute_vm_instance" "rocky" {
-  hostname          = "${local.prefix}-${local.deployment_location.datacenter}-rocky"
+  hostname          = "${local.prefix}-rocky"
   os_reference_code = var.rocky_os_reference_code
   domain            = var.domain
   datacenter        = local.deployment_location.datacenter
@@ -50,7 +50,7 @@ resource "ibm_compute_vm_instance" "rocky" {
 }
 
 resource "ibm_compute_vm_instance" "windows" {
-  hostname          = "${local.prefix}-${local.deployment_location.datacenter}-windows"
+  hostname          = "${local.prefix}-windows"
   os_reference_code = var.windows_os_reference_code
   domain            = var.domain
   datacenter        = local.deployment_location.datacenter

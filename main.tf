@@ -49,13 +49,17 @@ resource "ibm_compute_vm_instance" "rocky" {
   user_metadata     = file("${path.module}/init.yml")
 }
 
-# output "ubuntu_instance_ip" {
-#   value = ibm_compute_vm_instance.ubuntu.ipv4_address
-# }
-
-# output "rocky_instance_ip" {
-#   value = ibm_compute_vm_instance.rocky.ipv4_address
-# }
+resource "ibm_compute_vm_instance" "windows" {
+  hostname          = "${local.prefix}-${local.deployment_location.datacenter}-windows"
+  os_reference_code = var.windows_os_reference_code
+  domain            = var.domain
+  datacenter        = local.deployment_location.datacenter
+  network_speed     = 1000
+  hourly_billing    = true
+  flavor_key_name   = var.instance_size
+  local_disk        = true
+  tags              = local.tags
+}
 
 output "ubuntu_instance_id" {
   value = ibm_compute_vm_instance.ubuntu.id
@@ -63,3 +67,8 @@ output "ubuntu_instance_id" {
 
 output "rocky_instance_id" {
   value = ibm_compute_vm_instance.rocky.id
+}
+
+output "windows_instance_id" {
+  value = ibm_compute_vm_instance.windows.id
+}

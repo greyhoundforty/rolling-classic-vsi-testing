@@ -49,10 +49,14 @@ resource "ibm_compute_vm_instance" "rocky" {
   user_metadata     = file("${path.module}/init.yml")
 }
 
-output "01_ubuntu_instance_ip" {
+output "ubuntu_instance_ip" {
   value = ibm_compute_vm_instance.ubuntu.ipv4_address
 }
 
-output "02_rocky_instance_ip" {
+output "rocky_instance_ip" {
   value = ibm_compute_vm_instance.rocky.ipv4_address
+}
+
+output "instance_id_ubuntu" {
+  value = ibm_compute_vm_instance.ubuntu.id
 }
